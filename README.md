@@ -1,4 +1,3 @@
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
 ### Merge BN and Quantizaiton
 
 I think doing things from scratch is nonsense. Hope this helps and saves your precious time. The basic solution is to merge BN first and then quantize.  
@@ -9,17 +8,17 @@ BN层在训练中可以将数据归一化并且加速训练拟合速度，但是
 
 BN层一般位于卷积层之后：
 
-* 卷积: ![$X = \omega * x$](http://latex.codecogs.com/gif.latex?%24X%20%3D%20%5Comega%20*%20x%24)
+- 卷积：![$X = \omega * x$](http://latex.codecogs.com/gif.latex?%24X%20%3D%20%5Comega%20*%20x%24)
 
-* BN 分为两个阶段 ：
+- BN 分为两个阶段 ：
 
-  （第一阶段）： $ f1 = \frac{X - mean}{\sqrt[2][var]}$
+  （第一阶段）： ![f1 = \frac{x - mean}{\sqrt{var}}](http://latex.codecogs.com/gif.latex?f1%20%3D%20%5Cfrac%7Bx%20-%20mean%7D%7B%5Csqrt%7Bvar%7D%7D)
 
-  （第二阶段）： $f2 = \beta * f1 + \gamma = \beta *  \frac{\omega * x - mean}{\sqrt[2][var]} + \gamma = \beta\frac{\omega}{\sqrt[2]{var}}x + \gamma - \beta\frac{mean}{\sqrt[2]{var}}$
+  （第二阶段）： ![f2 = \beta * f1 + \gamma = \beta * \frac{X - mean}{\sqrt{var}} + \gamma = \beta * \frac{\omega * x - mean}{\sqrt{var}} + \gamma = \beta \frac{\omega}{\sqrt{var}}x + \gamma - \beta\frac{mean}{\sqrt{var}}](http://latex.codecogs.com/gif.latex?f2%20%3D%20%5Cbeta%20*%20f1%20+%20%5Cgamma%20%3D%20%5Cbeta%20*%20%5Cfrac%7BX%20-%20mean%7D%7B%5Csqrt%7Bvar%7D%7D%20+%20%5Cgamma%20%3D%20%5Cbeta%20*%20%5Cfrac%7B%5Comega%20*%20x%20-%20mean%7D%7B%5Csqrt%7Bvar%7D%7D%20+%20%5Cgamma%20%3D%20%5Cbeta%20%5Cfrac%7B%5Comega%7D%7B%5Csqrt%7Bvar%7D%7Dx%20+%20%5Cgamma%20-%20%5Cbeta%5Cfrac%7Bmean%7D%7B%5Csqrt%7Bvar%7D%7D)
 
-  $\omega_{new} = \beta\frac{\omega}{\sqrt[2]{var}}$
+  ![w_{new} = \beta\frac{\omega}{\sqrt{var}}](http://latex.codecogs.com/gif.latex?w_%7Bnew%7D%20%3D%20%5Cbeta%5Cfrac%7B%5Comega%7D%7B%5Csqrt%7Bvar%7D%7D)
 
-  $\beta_{new} = \gamma - \beta\frac{mean}{\sqrt[2]{var}}$
+  ![\beta_{new} = \gamma - \beta\frac{mean}{\sqrt{var}}](http://latex.codecogs.com/gif.latex?%5Cbeta_%7Bnew%7D%20%3D%20%5Cgamma%20-%20%5Cbeta%5Cfrac%7Bmean%7D%7B%5Csqrt%7Bvar%7D%7D)
 
 ##### Caffe Version
 
