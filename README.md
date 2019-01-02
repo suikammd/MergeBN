@@ -9,7 +9,7 @@ BN层在训练中可以将数据归一化并且加速训练拟合速度，但是
 
 BN层一般位于卷积层之后：
 
-* 卷积：$X = \omega * x$
+* 卷积: ![$X = \omega * x$](http://latex.codecogs.com/gif.latex?%24X%20%3D%20%5Comega%20*%20x%24)
 
 * BN 分为两个阶段 ：
 
