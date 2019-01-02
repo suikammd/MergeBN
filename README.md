@@ -1,3 +1,4 @@
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
 ### Merge BN and Quantizaiton
 
 I think doing things from scratch is nonsense. Hope this helps and saves your precious time. The basic solution is to merge BN first and then quantize.  
